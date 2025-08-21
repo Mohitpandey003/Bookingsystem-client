@@ -10,7 +10,13 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post("/login", { email, password });
+      // Add withCredentials: true here
+      const res = await API.post(
+        "/login",
+        { email, password },
+        { withCredentials: true } // <-- important
+      );
+
       if (res.data.message === "Login successful") {
         localStorage.setItem("user", JSON.stringify(res.data));
         alert("Login successful");
@@ -23,6 +29,7 @@ function Login() {
       alert(err.response?.data?.message || "Something went wrong");
     }
   };
+
   return (
     <div className="container mt-5" style={{ maxWidth: "500px" }}>
       <h2 className="text-center mb-4"> Login</h2>
