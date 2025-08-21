@@ -14,7 +14,7 @@ function Login() {
       const res = await API.post(
         "/login",
         { email, password },
-        { withCredentials: true } // <-- important
+        { withCredentials: true }
       );
 
       if (res.data.message === "Login successful") {
